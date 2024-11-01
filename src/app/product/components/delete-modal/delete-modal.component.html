@@ -1,0 +1,19 @@
+<main class="modal-container">
+  <p class="modal-message">¿Estás seguro de eliminar el producto {{ productTitle }}?</p>
+  <section class="modal-divider"></section>
+  <footer class="modal-buttons">
+    <app-base-button
+      (action)="onCancel()"
+      backgroundColor="#f0f2f5"
+      padding="1rem 5rem"
+      text="Cancelar"
+    />
+
+    <app-base-button
+      (action)="onConfirm()"
+      padding="1rem 5rem"
+      text="Confirmar"
+    />
+  </footer>
+</main>
+

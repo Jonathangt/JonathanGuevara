@@ -1,0 +1,60 @@
+<div class="table-container">
+  <table>
+    <thead>
+    <tr>
+      <th>Logo</th>
+      <th>Nombre del producto</th>
+      <th>Descripción <span class="info-icon">i</span></th>
+      <th>Fecha de liberación <span class="info-icon">i</span></th>
+      <th>Fecha de reestructuración <span class="info-icon">i</span></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (product of productStore.filteredProducts(); track $index) {
+        <tr>
+          <td>
+            <img class="logo-placeholder" [src]="product?.logo" alt="logo" loading="lazy" />
+          </td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.description }}</td>
+          <td>{{ product.date_release }}</td>
+          <td>{{ product.date_revision }}</td>
+          <td>
+            <div class="menu-icon" (click)="toggleMenu(product.id)">
+              ⋮
+              @if (isMenuOpen(product.id)) {
+                <div class="menu-options">
+                  <button (click)="editProduct(product)">Editar</button>
+                  <button (click)="deleteProduct(product)">Eliminar</button>
+                </div>
+              }
+            </div>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  <div class="table-footer">
+    <span>{{ productStore.filteredProducts().length }} Resultados</span>
+    @if (products.length) {
+      <select (change)="changeItemsPerPage($event)">
+        <option [value]="5">5</option>
+        <option [value]="10">10</option>
+        <option [value]="15">15</option>
+        <option [value]="0">All</option>
+      </select>
+    }
+  </div>
+</div>
+
+@if (showDeleteModal) {
+  <app-delete-modal
+    [productTitle]="selectedProduct?.name || ''"
+    (confirm)="confirmDelete()"
+    (cancel)="closeModal()"
+  />
+}
+
+
+

@@ -1,5 +1,10 @@
 # FinancialProducts
 
+- Para el proyecto de backend instalar la dependencia cors e habilitar en el main.ts
+- Ejecutar npm install para que se descargen e instalen las dependencias del proyecto
+- Para el front ejecutar el script `start` que se encuentra en el package.json
+- Para ejecutar las pruebas correr el script `test` que se encuentra en el package.json
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.10.
 
 ## Development server
@@ -16,7 +21,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng test` to execute the unit tests via [Jest]
 
 ## Running end-to-end tests
 

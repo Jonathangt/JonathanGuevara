@@ -1,0 +1,97 @@
+<div class="form-container">
+  <h2 class="form-title">{{ titlePage() }}</h2>
+  <section class="modal-divider"></section>
+  <form [formGroup]="registerForm">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="id">ID</label>
+        <input [readonly]="isEditProductRoute()" formControlName="id" id="id" type="text" />
+        @if (registerForm.get('id')?.invalid && registerForm.get('id')?.touched) {
+          <span class="error">
+            ID no válido!
+          </span>
+        }
+      </div>
+      <div class="form-group">
+        <label for="name">Nombre</label>
+        <input formControlName="name" id="name" type="text" />
+        @if (registerForm.get('name')?.invalid && registerForm.get('name')?.touched) {
+          <span class="error">
+             {{ getErrorMessage('name') }}
+          </span>
+        }
+      </div>
+    </div>
+
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="description">Descripción</label>
+        <input formControlName="description" id="description" type="text" />
+        @if (registerForm.get('description')?.invalid && registerForm.get('description')?.touched) {
+          <span class="error">
+            {{ getErrorMessage('description') }}
+          </span>
+        }
+      </div>
+      <div class="form-group">
+        <label for="logo">Logo</label>
+        <input formControlName="logo" id="logo" type="text" />
+        @if (registerForm.get('logo')?.invalid && registerForm.get('logo')?.touched) {
+          <span class="error">
+          {{ getErrorMessage('logo') }}
+          </span>
+        }
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="date_release">Fecha Liberación</label>
+        <input formControlName="date_release" id="date_release" type="date" />
+        @if (registerForm.get('date_release')?.invalid && registerForm.get('date_release')?.touched) {
+          <span class="error">
+             {{ getErrorMessage('date_release') }}
+          </span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="date_revision">Fecha Revisión</label>
+        <input formControlName="date_revision" id="date_revision" type="date" />
+        @if (registerForm.get('date_revision')?.invalid && registerForm.get('date_revision')?.touched) {
+          <span class="error">
+              {{ getErrorMessage('date_revision') }}
+          </span>
+        }
+      </div>
+    </div>
+
+    <footer class="form-buttons">
+      @if (isAddProductRoute()) {
+        <app-base-button
+          (action)="registerForm.reset()"
+          backgroundColor="#f0f2f5"
+          padding="1rem 2rem"
+          text="Reiniciar"
+        />
+      }
+
+      @if (isEditProductRoute()) {
+        <app-base-button
+          (action)="router.navigate([RouteNames.home]);"
+          backgroundColor="#f0f2f5"
+          padding="1rem 2rem"
+          text="Regresar"
+        />
+      }
+
+      <app-base-button
+        (action)="submitForm()"
+        [disabled]="!isFormValid"
+        padding="1rem 2rem"
+        text="Enviar"
+      />
+    </footer>
+  </form>
+</div>
